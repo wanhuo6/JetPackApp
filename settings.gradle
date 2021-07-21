@@ -1,2 +1,3 @@
 rootProject.name = "JetPackApp"
 include ':app'
+include ':architecture'
