@@ -30,8 +30,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    dataBinding {
-        enabled true
+    buildFeatures {
+        dataBinding = true
     }
 }
 
@@ -61,5 +61,10 @@ dependencies {
     api "com.squareup.retrofit2:converter-gson:2.9.0"
     //liveEventBus
     api 'io.github.jeremyliao:live-event-bus-x:1.8.0'
+    //coroutines
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1"
+    //constraintLayout
+    api "androidx.constraintlayout:constraintlayout:2.0.4"
 
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.ahuo.jetpackapp.ui.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_homeShareFragment"
+            app:destination="@id/homeShareFragment" />
+        <argument
+            android:name="name"
+            android:defaultValue="jim"
+            app:argType="string" />
+        <argument
+            android:name="age"
+            android:defaultValue="18"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeShareFragment"
+        android:name="com.ahuo.jetpackapp.ui.HomeShareFragment"
+        android:label="HomeShareFragment"
+        tools:layout="@layout/fragment_home_share" />
+
+
+</navigation>

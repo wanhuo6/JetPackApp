@@ -19,7 +19,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            //buildConfigField('String', 'BASE_URL', "https://wanandroid.com/")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
+          //  buildConfigField('String', 'BASE_URL', "https://wanandroid.com/")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -31,8 +37,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    dataBinding {
-        enabled true
+    buildFeatures {
+        dataBinding = true
     }
 }
 

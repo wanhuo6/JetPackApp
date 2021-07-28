@@ -1,9 +1,16 @@
 package com.ahuo.jetpackapp.vm
 
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.ahuo.architecture.base.BaseViewModel
+import com.ahuo.architecture.net.ErrorDealType
+import com.ahuo.jetpackapp.base.BaseViewModel
+import com.ahuo.jetpackapp.model.HomeModel
+import com.ahuo.jetpackapp.ui.HomeActivity
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.launch
 
 /**
@@ -12,11 +19,10 @@ import kotlinx.coroutines.launch
  */
 class MainViewModel : BaseViewModel() {
 
-    var count = MutableLiveData<Int>()
+    private val homeModel: HomeModel by lazy { HomeModel() }
 
-    init {
-        count.value = 60
-    }
+    val count: MutableLiveData<Int> by lazy { MutableLiveData(60) }
+
 
     fun startCountDown() {
         viewModelScope.launch {
@@ -29,6 +35,36 @@ class MainViewModel : BaseViewModel() {
                 count.postValue(value)
             }
         }
+    }
+
+    fun getBanner2() {
+        request {
+            homeModel.getBanner()
+                .flatMapConcat {
+                    homeModel.getBanner2(it.message ?: "")
+                }.uiLoading()
+                .catchError(ErrorDealType.TYPE_INIT)
+                .collect { res ->
+                    res.data?.let {
+                        Log.e("jetpackApp", "===")
+                    } ?: Log.e("jetpackApp", "data为空")
+                }
+        }
+    }
+
+    fun getBanner() {
+        request(
+            { homeModel.getBanner() }, {
+                Log.e("jetpackApp", "---" + it?.get(0)?.desc)
+            }, {
+                Log.e("jetpackApp", "---===" + it.message)
+            }, ErrorDealType.TYPE_TOAST
+        )
+
+    }
+
+    fun countClick(view: View) {
+        HomeActivity.startActivity(view.context)
     }
 
 
