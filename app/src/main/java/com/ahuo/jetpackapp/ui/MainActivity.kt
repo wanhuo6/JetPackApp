@@ -1,6 +1,7 @@
 package com.ahuo.jetpackapp.ui
 
 import android.os.Bundle
+import com.ahuo.architecture.ext.logE
 import com.ahuo.jetpackapp.BR
 import com.ahuo.jetpackapp.R
 import com.ahuo.jetpackapp.base.BaseActivity

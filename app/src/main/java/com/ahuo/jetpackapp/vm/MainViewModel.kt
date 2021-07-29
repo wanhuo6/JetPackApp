@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.ahuo.architecture.ext.logE
 import com.ahuo.architecture.net.ErrorDealType
 import com.ahuo.jetpackapp.base.BaseViewModel
 import com.ahuo.jetpackapp.model.HomeModel
@@ -22,6 +23,8 @@ class MainViewModel : BaseViewModel() {
     private val homeModel: HomeModel by lazy { HomeModel() }
 
     val count: MutableLiveData<Int> by lazy { MutableLiveData(60) }
+
+    val imageUrl: MutableLiveData<String> by lazy { MutableLiveData("https://tse2-mm.cn.bing.net/th/id/OIP-C.MWduK7tkhTGGOgFM2QLNMAHaEo?pid=ImgDet&rs=1") }
 
 
     fun startCountDown() {
@@ -46,8 +49,8 @@ class MainViewModel : BaseViewModel() {
                 .catchError(ErrorDealType.TYPE_INIT)
                 .collect { res ->
                     res.data?.let {
-                        Log.e("jetpackApp", "===")
-                    } ?: Log.e("jetpackApp", "data为空")
+                        "===".logE()
+                    } ?: "data为空".logE()
                 }
         }
     }
@@ -55,9 +58,9 @@ class MainViewModel : BaseViewModel() {
     fun getBanner() {
         request(
             { homeModel.getBanner() }, {
-                Log.e("jetpackApp", "---" + it?.get(0)?.desc)
+                ("---" + it?.get(0)?.desc).logE()
             }, {
-                Log.e("jetpackApp", "---===" + it.message)
+                ("---===" + it.message).logE()
             }, ErrorDealType.TYPE_TOAST
         )
 
