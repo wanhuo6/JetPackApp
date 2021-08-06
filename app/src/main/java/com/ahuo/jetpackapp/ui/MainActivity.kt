@@ -12,9 +12,10 @@ class MainActivity :
     BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.activity_main,BR.viewModel) {
 
     override fun initView(savedInstanceState: Bundle?) {
-        mViewModel.startCountDown()
+       // mViewModel.startCountDown()
         //mViewModel.getBanner()
        // mViewModel.getBanner2()
+        mViewModel.getBanner3()
     }
 
     override fun reLoad() {

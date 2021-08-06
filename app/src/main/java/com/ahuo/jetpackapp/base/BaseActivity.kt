@@ -14,9 +14,4 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel>(
     variableId: Int = 0
 ) :
     BaseActivity<DB, VM>(layoutId, variableId) {
-    abstract override fun initView(savedInstanceState: Bundle?)
-
-    override fun reLoad() {
-
-    }
 }

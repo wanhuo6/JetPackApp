@@ -2,6 +2,9 @@ package com.ahuo.architecture.base
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.ahuo.architecture.load.LoadManager
 
 /**
@@ -15,6 +18,7 @@ interface IContain<DB : ViewDataBinding, VM : BaseViewModel> {
     val mBinding: DB
     val mViewModel: VM
     val mLoadManager: LoadManager
+    val mViewModelStoreOwner: ViewModelStoreOwner
 
     fun initLoadManager()
 
@@ -89,9 +93,30 @@ interface IContain<DB : ViewDataBinding, VM : BaseViewModel> {
     fun dismissError() {
         mLoadManager.showSuccess()
     }
-
     /**
      * 重新加载数据
      */
     fun reLoad()
+
+    /**
+     * 延时时长默认300毫秒
+     */
+    fun lazyLoadTime(): Long {
+        return 300
+    }
+
+    /**
+     * 延时加载
+     */
+    fun lazyLoadData()
+
+    /**
+     * 获取viewModel
+     */
+    fun <T : ViewModel?> getViewModel(
+        modelClass: Class<T>,
+        viewModelStoreOwner: ViewModelStoreOwner? = null
+    ): T {
+        return ViewModelProvider(viewModelStoreOwner ?: mViewModelStoreOwner).get(modelClass)
+    }
 }

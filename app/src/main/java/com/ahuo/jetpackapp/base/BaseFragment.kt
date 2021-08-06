@@ -15,8 +15,4 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel>(
     useActivityViewModelStoreOwner: Boolean = false
 ) : BaseFragment<DB, VM>(layoutId, variableId, useActivityViewModelStoreOwner) {
 
-    abstract override fun initView(savedInstanceState: Bundle?)
-
-    override fun lazyLoadData() {
-    }
 }

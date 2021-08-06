@@ -2,6 +2,7 @@ package com.ahuo.jetpackapp.model
 
 import com.ahuo.architecture.net.BaseResponse
 import com.ahuo.jetpackapp.entity.BannerEntity
+import com.ahuo.jetpackapp.entity.HotKeyEntity
 import com.ahuo.jetpackapp.repository.net.apiService
 import kotlinx.coroutines.flow.Flow
 
@@ -19,6 +20,10 @@ class HomeModel {
 
     fun getBanner2(string: String): Flow<BaseResponse<List<String>>> {
         return apiService.getBanner2()
+    }
+
+    fun getHotKey(): Flow<BaseResponse<List<HotKeyEntity>>> {
+        return apiService.getHotKey()
     }
 
 

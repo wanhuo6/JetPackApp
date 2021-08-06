@@ -10,6 +10,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
 import com.ahuo.architecture.ext.dismissLoadingExt
 import com.ahuo.architecture.ext.getVmClazz
@@ -32,12 +33,10 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel>(
     override lateinit var mBinding: DB
     override lateinit var mViewModel: VM
     override lateinit var mLoadManager: LoadManager
+    override val mViewModelStoreOwner: ViewModelStoreOwner
+        get() = this
 
     private var mIsFirst: Boolean = true //是否第一次加载
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -120,5 +119,13 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel>(
     /**
      * 懒加载
      */
-    abstract fun lazyLoadData()
+    override fun lazyLoadData(){
+
+    }
+    /**
+     * 初始化异常重新加载
+     */
+    override fun reLoad() {
+
+    }
 }

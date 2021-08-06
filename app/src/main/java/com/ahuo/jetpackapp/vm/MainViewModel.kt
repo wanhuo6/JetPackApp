@@ -1,17 +1,19 @@
 package com.ahuo.jetpackapp.vm
 
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ahuo.architecture.ext.logE
 import com.ahuo.architecture.net.ErrorDealType
 import com.ahuo.jetpackapp.base.BaseViewModel
+import com.ahuo.jetpackapp.entity.BannerEntity
+import com.ahuo.jetpackapp.entity.HotKeyEntity
 import com.ahuo.jetpackapp.model.HomeModel
 import com.ahuo.jetpackapp.ui.HomeActivity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.launch
 
 /**
@@ -40,11 +42,41 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
+    /**
+     * 并发多请求
+     */
+    fun getBanner3() {
+        viewModelScope.launch {
+            listOf(
+                homeModel.getBanner(),
+                homeModel.getHotKey(),
+                homeModel.getBanner(),
+                homeModel.getHotKey(),
+            ).merge().uiLoading().catchError(ErrorDealType.TYPE_INIT).collect {
+                it.data?.get(0).run {
+                    when (this) {
+                        is HotKeyEntity -> name.logE()
+                        is BannerEntity -> desc.logE()
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    /**
+     * 顺序多请求
+     */
     fun getBanner2() {
         request {
             homeModel.getBanner()
                 .flatMapConcat {
-                    homeModel.getBanner2(it.message ?: "")
+                    homeModel.getHotKey()
+                }.flatMapConcat {
+                    homeModel.getBanner()
+                }.flatMapConcat {
+                    homeModel.getHotKey()
                 }.uiLoading()
                 .catchError(ErrorDealType.TYPE_INIT)
                 .collect { res ->
@@ -55,6 +87,9 @@ class MainViewModel : BaseViewModel() {
         }
     }
 
+    /**
+     * 单请求
+     */
     fun getBanner() {
         request(
             { homeModel.getBanner() }, {

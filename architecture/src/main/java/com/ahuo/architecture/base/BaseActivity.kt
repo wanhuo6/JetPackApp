@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.ahuo.architecture.ext.dismissLoadingExt
 import com.ahuo.architecture.ext.getVmClazz
 import com.ahuo.architecture.ext.showLoadingExt
@@ -23,6 +24,8 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel>(
     override lateinit var mLoadManager: LoadManager
     override lateinit var mBinding: DB
     override lateinit var mViewModel: VM
+    override val mViewModelStoreOwner: ViewModelStoreOwner
+        get() = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,5 +91,17 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel>(
      */
     abstract fun initView(savedInstanceState: Bundle?)
 
+    /**
+     * 初始化异常重新加载
+     */
+    override fun reLoad() {
 
+    }
+
+    /**
+     * 延时加载
+     */
+    override fun lazyLoadData() {
+
+    }
 }
