@@ -90,13 +90,13 @@ abstract class BaseFragment<DB : ViewDataBinding, VM : BaseViewModel>(
      * 创建viewModel
      */
     override fun initViewModel() {
-        mViewModel = ViewModelProvider(
-            if (useActivityViewModelStoreOwner) {
+        mViewModel = getViewModel(
+            getVmClazz(this), if (useActivityViewModelStoreOwner) {
                 activity as AppCompatActivity
             } else {
                 this
             }
-        ).get(getVmClazz(this))
+        )
     }
     /**
      * 展示进度

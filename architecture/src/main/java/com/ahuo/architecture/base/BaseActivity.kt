@@ -68,7 +68,7 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel>(
      * 创建viewModel
      */
     override fun initViewModel() {
-        mViewModel = ViewModelProvider(this).get(getVmClazz(this))
+        mViewModel = getViewModel(getVmClazz(this))
     }
 
     /**
