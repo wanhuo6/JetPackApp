@@ -60,8 +60,10 @@ abstract class BaseActivity<DB : ViewDataBinding, VM : BaseViewModel>(
      * 初始化dataBinding
      */
     private fun initDataBinding() {
-        mBinding = DataBindingUtil.setContentView(this, layoutId)
-        mBinding.lifecycleOwner = this
+        if (layoutId!=0){
+            mBinding = DataBindingUtil.setContentView(this, layoutId)
+            mBinding.lifecycleOwner = this
+        }
     }
 
     /**
