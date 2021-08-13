@@ -52,7 +52,7 @@ open class BaseViewModel : ViewModel() {
      */
     fun <T> request(
         block: () -> Flow<BaseResponse<T>>,
-        onSuccess: (T?) -> Unit,
+        onSuccess: (T?) -> Unit = {},
         onError: (ResponseError) -> Unit = {},
         errorDealType: Int = ErrorDealType.TYPE_TOAST,
         isShowLoading: Boolean = true,
@@ -100,10 +100,11 @@ open class BaseViewModel : ViewModel() {
     /**
      * 请求时网络异常
      */
-    fun <T : BaseResponse<*>> Flow<T>.catchError(errorDealType: Int= ErrorDealType.TYPE_TOAST): Flow<T> = catch {
-        it.printStackTrace()
-        dealError(errorDealType, ResponseError.getEntity(it))
-    }
+    fun <T : BaseResponse<*>> Flow<T>.catchError(errorDealType: Int = ErrorDealType.TYPE_TOAST): Flow<T> =
+        catch {
+            it.printStackTrace()
+            dealError(errorDealType, ResponseError.getEntity(it))
+        }
 
 
 }
