@@ -73,7 +73,7 @@ open class BaseViewModel : ViewModel() {
                 } else {
                     val responseError = ResponseError(it.code, it.message)
                     dealError(errorDealType, responseError)
-                    onError(ResponseError(it.code, it.message))
+                    onError(responseError)
                 }
             }
         }
@@ -100,10 +100,12 @@ open class BaseViewModel : ViewModel() {
     /**
      * 请求时网络异常
      */
-    fun <T : BaseResponse<*>> Flow<T>.catchError(errorDealType: Int = ErrorDealType.TYPE_TOAST): Flow<T> =
+    fun <T : BaseResponse<*>> Flow<T>.catchError(errorDealType: Int = ErrorDealType.TYPE_TOAST,onError: (ResponseError) -> Unit = {}): Flow<T> =
         catch {
             it.printStackTrace()
-            dealError(errorDealType, ResponseError.getEntity(it))
+            val responseError = ResponseError.getEntity(it)
+            onError(responseError)
+            dealError(errorDealType, responseError)
         }
 
 
