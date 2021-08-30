@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.RoomActivity">
+
+        <TextView
+            android:id="@+id/tvLookAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="查询所有用户"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tvLookSome"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLookSome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="查询部分用户"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@id/tvLookAll"
+            app:layout_constraintRight_toLeftOf="@+id/tvInsert"
+            app:layout_constraintTop_toTopOf="@+id/tvLookAll" />
+
+        <TextView
+            android:id="@+id/tvInsert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="插入用户"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@id/tvLookSome"
+            app:layout_constraintRight_toLeftOf="@+id/tvDel"
+            app:layout_constraintTop_toTopOf="@+id/tvLookAll" />
+
+        <TextView
+            android:id="@+id/tvDel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="删除用户"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@id/tvInsert"
+            app:layout_constraintRight_toLeftOf="@+id/tvUpdate"
+            app:layout_constraintTop_toTopOf="@+id/tvLookAll" />
+
+        <TextView
+            android:id="@+id/tvUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="更新用户"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@id/tvInsert"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvLookAll" />
+
+        <TextView
+            android:id="@+id/tvLookAllGoods"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="查询所有商品"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toLeftOf="@id/tvLookAll"
+            app:layout_constraintTop_toBottomOf="@+id/tvLookAll" />
+
+        <TextView
+            android:id="@+id/tvInsertGoods"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="插入商品"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@id/tvLookAllGoods"
+            app:layout_constraintTop_toTopOf="@+id/tvLookAllGoods" />
+
+        <TextView
+            android:id="@+id/tvLookAllUserAndMusicLibrary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="查询所有用户音乐"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toLeftOf="@id/tvLookAllGoods"
+            app:layout_constraintTop_toBottomOf="@+id/tvLookAllGoods" />
+
+        <TextView
+            android:id="@+id/tvLookAllMusicLibraryWithSong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="查询播放列表"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@id/tvLookAllUserAndMusicLibrary"
+            app:layout_constraintTop_toBottomOf="@+id/tvLookAllGoods" />
+
+        <TextView
+            android:id="@+id/tvLookAllUserWithMusicLibraryAndSong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="查询用户播放列表"
+            android:textColor="@color/purple_500"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@id/tvLookAllMusicLibraryWithSong"
+            app:layout_constraintTop_toBottomOf="@+id/tvLookAllGoods" />
+
+        <TextView
+            android:id="@+id/tvResult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20sp"
+            android:text="结果："
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvLookAllUserAndMusicLibrary" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

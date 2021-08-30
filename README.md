@@ -7,3 +7,4 @@
 [dataBinding](https://developer.android.google.cn/topic/libraries/data-binding?hl=zh_cn) 、
 [lifecycle](https://developer.android.google.cn/topic/libraries/architecture/lifecycle) 
 - 网络采用[retrofit](https://github.com/square/retrofit) + [coroutines flow](https://developer.android.google.cn/codelabs/advanced-kotlin-coroutines#7)
+- 数据库[room](https://developer.android.google.cn/training/data-storage/room?hl=zh-cn) 
